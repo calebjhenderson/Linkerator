@@ -1,0 +1,36 @@
+{
+  "name": "project_17",
+  "version": "1.0.0",
+  "description": "",
+  "main": "linkerator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node server.js",
+    "server:dev": "nodemon server.js"
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calebjhenderson/Linkerator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/calebjhenderson/Linkerator/issues"
+  },
+  "homepage": "https://github.com/calebjhenderson/Linkerator#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.2.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
