@@ -2,12 +2,14 @@ const express = require('express');
 const tagsRouter = express.Router();
 const chalk = require('chalk');
 
+
 tagsRouter.use((req, res) => {
     console.log(chalk.green("A request is being made to the tags router!"))
     next();
 });
 
-tagsRouter.get((req, res) => {
+
+tagsRouter.get('/tags', async(req, res, next) => {
 try{
     tags = await getAllTags();
     res.send({
@@ -18,7 +20,8 @@ try{
     }
 });
 
-tagsRouter.post((req, res) => {
+
+tagsRouter.post('/newtag', async(req, res, next) => {
     try{
         newTag = await createTag();
         res.send({
@@ -28,5 +31,6 @@ tagsRouter.post((req, res) => {
         throw({name, message})
     }
 });
+
 
 module.exports = tagsRouter;

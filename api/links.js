@@ -3,12 +3,13 @@ const linksRouter = express.Router();
 const chalk = require('chalk');
 
 
-linksRouter.use((req,res) =>{
-    console.log('A request is being made to the links router.')
+linksRouter.use((req, res, next) =>{
+    console.log(chalk.green('A request is being made to the links router.'))
+    next();
 });
 
 
-linksRouter.get('/', async (req, res) => {
+linksRouter.get('/links', async (req, res, next) => {
     try{
         const links = await getLinks();
         res.send({
@@ -19,15 +20,16 @@ linksRouter.get('/', async (req, res) => {
 }});
 
 
-linksRouter.post('/create', async (req,res) => {
+linksRouter.post('/createlink', async (req, res, next) => {
     try{
-        const newLink = await createLink();
+        const createdLink = await createLink();
         res.send({
-            newLink
+            createdLink
         });
     } catch({name, message}){
-        throw ({name, message})
+        throw({name, message})
     }
 });
+
 
 module.exports = linksRouter 
