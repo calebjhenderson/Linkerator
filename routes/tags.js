@@ -10,8 +10,9 @@ tagsRouter.use('/tags',(req, res, next) => {
 
 
 tagsRouter.get('/tags/:tagName/links', async(req, res) => {
+    const tag = req.params
 try{
-    tags = await getAllTags();
+    tags = await getTagByName(tag);
     res.send({
         tags
     });

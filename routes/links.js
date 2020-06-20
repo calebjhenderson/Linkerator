@@ -9,7 +9,7 @@ linksRouter.use('/links', async (req, res, next) =>{
 });
 
 
-linksRouter.get('/links', async (req, res) => {
+linksRouter.get('/alllinks', async (req, res) => {
     try{
         const links = await getLinks();
         res.send({
@@ -20,7 +20,7 @@ linksRouter.get('/links', async (req, res) => {
 }});
 
 
-linksRouter.post('/links', async (req, res) => {
+linksRouter.post('/postnewlink', async (req, res) => {
     try{
         //(creates tags during link creation)
         const tags = await getAllTags()
@@ -32,6 +32,12 @@ linksRouter.post('/links', async (req, res) => {
     } catch({name, message}){
         throw({name, message})
     }
+});
+
+
+
+linksRouter.patch('/updatelink', async (req,res)=>{
+    
 });
 
 
