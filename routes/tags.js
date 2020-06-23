@@ -3,7 +3,7 @@ const tagsRouter = express.Router();
 const chalk = require('chalk');
 
 
-tagsRouter.use('/tags',(req, res, next) => {
+tagsRouter.use('/',(req, res, next) => {
     console.log(chalk.green("A request is being made to the tags router!"))
     next();
 });

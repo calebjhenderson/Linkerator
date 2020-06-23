@@ -3,7 +3,7 @@ const linksRouter = express.Router();
 const chalk = require('chalk');
 
 
-linksRouter.use('/links', async (req, res, next) =>{
+linksRouter.use('/', async (req, res, next) =>{
     console.log(chalk.green('A request is being made to the links router.'))
     next();
 });
@@ -20,7 +20,7 @@ linksRouter.get('/alllinks', async (req, res) => {
 }});
 
 
-linksRouter.post('/postnewlink', async (req, res) => {
+linksRouter.post('/createLink', async (req, res) => {
     try{
         //(creates tags during link creation)
         const tags = await getAllTags()

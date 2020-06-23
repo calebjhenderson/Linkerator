@@ -102,7 +102,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const app = document.querySelector('#app');
-react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, " Hello, from React!!!!!!"), app, () => {
+const styles = {
+  container: {
+    backgroundColor: 'pink'
+  }
+};
+
+const Component = () => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "App",
+    style: styles.container
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello, from React!!!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Neat stuff. Oh boy."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Needs some style now!"));
+};
+
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(
+/*#__PURE__*/
+//Should be able to style this compenent now with a framework.
+react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Component, null), app, () => {
   console.log('Rendered!!!');
 });
 
