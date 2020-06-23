@@ -102,7 +102,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const app = document.querySelector('#app');
-react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, " Hello!!!!!!"), app, () => {
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, " Hello, from React!!!!!!"), app, () => {
   console.log('Rendered!!!');
 });
 

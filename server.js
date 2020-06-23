@@ -5,7 +5,8 @@ const express = require ('express');
 const server = express();
 const chalk = require('chalk')
 const path = require('path')
-const DIST_PATH = path.join(__dirname, './dist' )
+//NOT IN DIST FOLDER ANYMORE...NEED INDEX.HTML
+const DIST_PATH = path.join(__dirname, './public' )
 
 server.use(express.static(DIST_PATH))
 
