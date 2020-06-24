@@ -1,26 +1,43 @@
 const express = require('express');
 const tagsRouter = express.Router();
-const chalk = require('chalk');
+const { getAllTags, getLinkByTagName } = require('../db');
+const linksRouter = require('./links');
 
-
-tagsRouter.use('/',(req, res, next) => {
-    console.log(chalk.green("A request is being made to the tags router!"))
-    next();
+tagsRouter.use((req, res, next) => {
+    console.log('A request in being made to /tags')
+    next()
 });
 
+tagsRouter.get('/', async (req,res) => {
+    const tags = await getAllTags();
 
-tagsRouter.get('/tags/:tagName/links', async(req, res) => {
-    const tag = req.params
-try{
-    tags = await getTagByName(tag);
     res.send({
         tags
     });
-    }catch({name, message}){
-        throw({name, message})
-    }
 });
 
+// GET /api/tags:tagName/links
+// *** returns all links by tag name ***
+tagsRouter.get('/:tagName/links', async (req, res, next) => {
 
+    const { tagName } = req.params;
+  
+    const links = await getLinkByTagName(tagName);
+    
+    try {
+        if(links) {
+            res.send({
+                links
+            });
+        } else {
+            next({
+                name: 'NoLinksForTagsrror',
+                message: "Did not find any links for this tag"
+            });
+        }
+    } catch({ name, message }) {
+        next({ name, message });
+    }
+  });
 
 module.exports = tagsRouter;

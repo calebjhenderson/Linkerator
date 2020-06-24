@@ -5,11 +5,11 @@ createDB = async (force = false) => {
     try {
         if (force) { 
 
-        await db.query(`
-            DROP TABLE IF EXISTS link_tags;
-            DROP TABLE IF EXISTS links;
-            DROP TABLE IF EXISTS tags;
-        `);
+            await db.query(`
+                DROP TABLE IF EXISTS link_tags;
+                DROP TABLE IF EXISTS links;
+                DROP TABLE IF EXISTS tags;
+            `);
         }
   
         console.log('>>>>>createDB', 'tables dropped');
@@ -17,7 +17,8 @@ createDB = async (force = false) => {
         await db.query(`
             CREATE TABLE IF NOT EXISTS links ( 
                 id SERIAL PRIMARY KEY,
-                link VARCHAR (255) UNIQUE NOT NULL,
+                name VARCHAR (255) UNIQUE NOT NULL,
+                url VARCHAR (255) UNIQUE NOT NULL,
                 count INTEGER DEFAULT 1,
                 comment TEXT,
                 date DATE NOT NULL DEFAULT CURRENT_DATE
@@ -55,8 +56,8 @@ initDB = async () => {
     try {
       
         await db.query(`
-            INSERT INTO links (id, link, count, comment) 
-            VALUES (1, 'www.https://javascript.info/', 1, 'great javascript reference')
+            INSERT INTO links (id, name, url, comment) 
+            VALUES (1, 'javascript.info', 'www.javascript.info', 'great javascript reference')
             ON CONFLICT DO NOTHING
             ;
         `);
@@ -96,7 +97,7 @@ seed = async () => {
         db.connect();
         console.log('db connected!');
 
-        await createDB();
+        await createDB(false); // execute or not to DROP tables 
         await initDB();
 
         console.log('db seeded!');
