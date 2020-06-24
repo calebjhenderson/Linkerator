@@ -100,6 +100,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 
+ //import axios functions and add them to buttons on click 
 
 const app = document.querySelector('#app');
 const styles = {
@@ -125,14 +126,6 @@ const SearchTagsForm = () => {
     label: "search"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Search Tags"));
 };
-
-function fetchLinks({
-  target
-}) {
-  return fetch('/links').then(function (response) {
-    return response.json();
-  });
-}
 
 const SearchLinksForm = () => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

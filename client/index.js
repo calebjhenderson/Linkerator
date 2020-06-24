@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+//import axios functions and add them to buttons on click 
 
 const app = document.querySelector('#app')
 
@@ -35,17 +36,10 @@ const SearchTagsForm = () => {
 }
 
 
-function fetchLinks({target}){
-    return fetch('/links')
-        .then(function(response){
-            return response.json()   
-            })
-     }
 
 
 
 const SearchLinksForm = () => {
-
     return (
         <div style={styles.container}>
             <input type="text" label="search"/> 
@@ -60,7 +54,7 @@ const SearchLinksForm = () => {
 const SearchLinksResults = () => {
     return (
         <div id="App" style={styles.container}>
-            
+{/* THIS NEEDS TO RE RENDER BASED ON STATE CHANGING, WITH THE DATA FROM THE BUTTON CLICK */}
         </div>
     )
 }
@@ -68,6 +62,7 @@ const SearchLinksResults = () => {
 const SearchTagsResults = () => {
     return (
         <div id="App" style={styles.container}>
+            {/* SAME HERE */}
             <button>Edit</button>
             <button>Delete</button>
         </div>
