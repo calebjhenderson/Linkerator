@@ -86,6 +86,57 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./client/components/bookmarks.js":
+/*!****************************************!*\
+  !*** ./client/components/bookmarks.js ***!
+  \****************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+const Bookmarks = ({
+  getLinks,
+  editLink,
+  //axios calls i wrote to access the db at certain routes 
+  deleteLink
+}) => {
+  let bookmarkCount = getLinks.reduce((linkcount, link) => {
+    return linkcount + link.count;
+  }, 0);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "links"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Amount of bookmarks: (", bookmarkCount, " )"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "Bookmarks"
+  }, getLinks.map(({
+    id,
+    name,
+    count
+  }) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    key: id
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "(", count, "x) ", name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: () => editLink({
+      id,
+      name
+    })
+  }, " Edit Bookmark "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: () => deleteLink({
+      id
+    })
+  }, " Delete Bookmark ")))));
+};
+
+module.exports = {
+  Bookmarks
+}; //export not found?
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
+
+/***/ }),
+
 /***/ "./client/index.js":
 /*!*************************!*\
   !*** ./client/index.js ***!
@@ -99,62 +150,60 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_bookmarks_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/bookmarks.js */ "./client/components/bookmarks.js");
 
- //import axios functions and add them to buttons on click 
+
 
 const app = document.querySelector('#app');
 const styles = {
   container: {
     backgroundColor: 'pink'
   }
-}; //take a state variable for the links?
-//make a function with the axios calls
-//use that function in the button that you render...
-
-const SearchTagsForm = () => {
-  function fetchTags() {
-    const tags = input.val;
-    return fetch(tags).then(function (response) {
-      return response.json();
-    });
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: styles.container
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    label: "search"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Search Tags"));
-};
-
-const SearchLinksForm = () => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: styles.container
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    label: "search"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Search Links"));
-};
-
-const SearchLinksResults = () => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "App",
-    style: styles.container
-  });
-};
-
-const SearchTagsResults = () => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "App",
-    style: styles.container
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Delete"));
-};
+}; // const SearchTagsForm = () => {
+//     return (
+//         <div style={styles.container}>
+//             <input type="text" label="search"/> 
+//             <button >Search Tags</button>
+//              </div>
+//     )
+// }
+// const SearchLinksForm = () => {
+//     return (
+//         <div style={styles.container}>
+//             <input type="text" label="search"/> 
+//             <button >Search Links</button>
+//              </div>
+//     )
+// }
+// const SearchLinksResults = () => {
+//     return (
+//         <div id="App" style={styles.container}>
+// {/* THIS NEEDS TO RE RENDER BASED ON STATE CHANGING, WITH THE DATA FROM THE BUTTON CLICK */}
+//         </div>
+//     )
+// }
+// const SearchTagsResults = () => {
+//     return (
+//         <div id="App" style={styles.container}>
+//             {/* SAME HERE */}
+//             <button>Edit</button>
+//             <button>Delete</button>
+//         </div>
+//     )
+// }
 
 const App = () => {
+  const [links, setLinks] = useState([]);
+  const [tags, setTags] = useState([]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "App",
     style: styles.container
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Linkerator!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Neat stuff. Oh boy."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(SearchLinksForm, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(SearchLinksResults, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(SearchTagsForm, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(SearchTagsResults, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Needs some style now!"));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Linkerator!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Neat stuff. Oh boy."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(SearchBookmarks, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_bookmarks_js__WEBPACK_IMPORTED_MODULE_2__["Bookmarks"], {
+    getLinks: links,
+    patchLink: patchLink,
+    postLink: postLink,
+    deleteLink: deleteLink
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(SearchTags, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Tags, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Needs some style now!"));
 };
 
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null), app, () => {
@@ -28674,6 +28723,41 @@ if (false) {} else {
 if (false) {} else {
   module.exports = __webpack_require__(/*! ./cjs/scheduler-tracing.development.js */ "./node_modules/scheduler/cjs/scheduler-tracing.development.js");
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/webpack/buildin/harmony-module.js":
+/*!*******************************************!*\
+  !*** (webpack)/buildin/harmony-module.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = function(originalModule) {
+	if (!originalModule.webpackPolyfill) {
+		var module = Object.create(originalModule);
+		// module.parent = undefined by default
+		if (!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		Object.defineProperty(module, "exports", {
+			enumerable: true
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
 
 
 /***/ })

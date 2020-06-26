@@ -31,7 +31,7 @@ tagsRouter.get('/:tagName/links', async (req, res, next) => {
             });
         } else {
             next({
-                name: 'NoLinksForTagsrror',
+                name: 'NoLinksForTags',
                 message: "Did not find any links for this tag"
             });
         }

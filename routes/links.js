@@ -16,7 +16,7 @@ linkRouter.get("/", async (req, res, next) => {
     const links = await getAllLinks();
   
     console.log('successfully retrieved all links: ', links);
-  
+
     res.send({
       links,
       status: true,
@@ -71,7 +71,7 @@ linkRouter.post("/", async (req, res, next) => {
   
   // PATCH /api/links:id
   // ***  update comment/tags and increment link count ***
-  apiRouter.patch('/:id', async (req, res, next) => {
+linkRouter.patch('/:id', async (req, res, next) => {
       
       const {id} = req.params;
       const {name, url, count, comment, tags} = req.body;
@@ -120,7 +120,7 @@ linkRouter.post("/", async (req, res, next) => {
 
   // DELETE /api/link:id
   // ***  delete link and link_tags ***
-linksRouter.delete('/:linkId', async (req, res, next) => {
+linkRouter.delete('/:linkId', async (req, res, next) => {
 
     const { id } = req.params;
 
@@ -152,4 +152,4 @@ linksRouter.delete('/:linkId', async (req, res, next) => {
     }
   });
 
-  module.exports = linkRouter;
+module.exports = linkRouter;
