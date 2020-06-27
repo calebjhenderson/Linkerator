@@ -12,25 +12,18 @@ import SearchBookmarks from './components/SearchBookmarks'
 import SearchTags from './components/SearchTags'
 
 
+
 const app = document.querySelector('#app')
 
-const styles = {
-    title:{
-        backgroundColor:'pink'
-    },
-    neat:{
-        backgroundColor:'green'
 
-    }
-}
 
 
 const App = () => {
     
     return (
-        <div id= "App" >
-            <h1 style={styles.title}>Linkerator!</h1>
-            <h2 style={styles.neat}>Neat stuff. Oh boy.</h2>
+        <div >
+            <h1 >Linkerator!</h1>
+            <h2 >Bookmark Some Links</h2>
             <Bookmarks/>
             <NewBookmark/>
             <Tags/>
@@ -38,9 +31,9 @@ const App = () => {
             <Link_Tags/>
             <NewLinkTag/>
             
-            {/* <SearchBookmarks/> */}
-            {/* <SearchTags/> */}
-            {/* <SearchLinkTags/>*/}
+            {/* <SearchBookmarks/>
+            <SearchTags/>
+            <SearchLinkTags/> */}
 
             <h3>Needs some style now!</h3>
         </div>

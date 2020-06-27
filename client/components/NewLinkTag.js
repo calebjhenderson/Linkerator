@@ -8,12 +8,7 @@ const NewLinkTag = ({
 })=>{
 
   const [newLinkTag, setLinkTags] = useState([]);
-  useEffect(()=>{
-    postLinkTag()
-    .then((link_tags)=>{
-      setLinkTags(link_tags)
-    })
-  }, []);
+ 
   
     return (
         <div id="newLinkTag">
@@ -21,7 +16,7 @@ const NewLinkTag = ({
           
           {/* <input type = 'text'> </input> */}
           
-          <button onclick= {()=>{postLinkTag()}
+          <button onClick= {()=>{postLinkTag()}
         }>Create</button> 
           </div>
 

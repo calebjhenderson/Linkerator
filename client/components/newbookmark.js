@@ -1,26 +1,21 @@
 import React,{ useState, useEffect } from 'react'
 import { postLink } from '../api/index.js'
 
-//how will these forms that get added take input values??
+
 const NewBookmark = ({
 
 })=>{
 
-  const [newBookmark, setBookmarks] = useState([]);
-  useEffect(()=>{
-    postLink()
-    .then((links)=>{
-      setBookmarks(links)
-    })
-  }, []);
+  const [bookmarks, setBookmarks] = useState([]);
   
+
     return (
         <div id="newBookmark">
           <h3>Create New Bookmark</h3>
           
-          {/* <input type = 'text'> </input> */}
+          {/* <input type = 'text'> add a link here </input> */}
           
-          <button onclick= {()=>{postLink()}
+          <button onClick= {()=>{postLink()}
         }>Post</button> 
           </div>
 

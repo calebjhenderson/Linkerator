@@ -8,12 +8,7 @@ const NewTag = ({
 })=>{
 
   const [newTag, setTags] = useState([]);
-  useEffect(()=>{
-    postTag()
-    .then((tags)=>{
-      setTags(tags)
-    })
-  }, []);
+
   
     return (
         <div id="newTag">
@@ -21,7 +16,7 @@ const NewTag = ({
           
           {/* <input type = 'text'> </input> */}
           
-          <button onclick= {()=>{postTag()}
+          <button onClick= {()=>{postTag()}
         }>Create</button> 
           </div>
 

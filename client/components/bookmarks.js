@@ -6,12 +6,14 @@ import {getLinks, editLink, deleteLink } from '../api/index.js';
 const Bookmarks = ({ 
  }) => {
    const [links, setLinks] = useState([]);
+
   useEffect(()=>{
     getLinks()
     .then((links)=>{
       setLinks(links)
     })
   }, []);
+  
 
   let bookmarkCount = links.length
 
@@ -20,8 +22,8 @@ const Bookmarks = ({
       <h3>Amount of bookmarks: ({ bookmarkCount } )</h3>
 
       <h3> Amount of clicks:</h3>
-      
-      <h5> Comments: </h5>
+
+      {/* <h5> Comments: </h5> */}
       
       <div className="Bookmarks"> 
       {links.map(({ id, name, count }) => (

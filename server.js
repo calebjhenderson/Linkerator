@@ -11,7 +11,7 @@ server.use(express.static(DIST_PATH))
 
 const ROUTES = path.join(__dirname,'./routes/routers.js')
 server.use(express.static(ROUTES))
-//can we .use on multiple variables like this?
+
 
 server.listen(PORT, ()=>{
     console.log(chalk.cyan('Server is up on port', PORT))

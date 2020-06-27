@@ -4,6 +4,7 @@
   "description": "",
   "main": "linkerator.js",
   "scripts": {
+    "start": "node server.js",
     "start:client": "webpack --watch",
     "start:server": "node server.js",
     "seed:dev": "node ./db/seed.js"

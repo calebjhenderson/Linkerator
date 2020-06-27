@@ -115,7 +115,7 @@ async function getLinks() {
   try {
     const {
       rows: links
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(`./api/links`);
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(`/routes/links`);
     return links;
   } catch (error) {
     throw error;
@@ -125,7 +125,8 @@ async function postLink() {
   try {
     const {
       rows: links
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(`./api/links`);
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(`/routes/links`);
+    state.links = links;
     return links;
   } catch (error) {
     throw error;
@@ -135,7 +136,7 @@ async function editLink() {
   try {
     const {
       rows: links
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.patch(`./api/links/:id`);
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.patch(`/routes/links/:id`);
     return links;
   } catch (error) {
     throw error;
@@ -145,7 +146,7 @@ async function deleteLink() {
   try {
     const {
       rows: links
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.delete(`./api/links/linkid`);
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.delete(`/routes/links/linkid`);
     return links;
   } catch (error) {
     throw error;
@@ -155,7 +156,7 @@ async function getTags() {
   try {
     const {
       rows: tags
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(`./api/tags`);
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(`/routes/tags`);
     return tags;
   } catch (error) {
     throw error;
@@ -165,7 +166,7 @@ async function getLinksByTag() {
   try {
     const {
       rows: links
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(`./api/tags/:tagName/links`);
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(`/routes/tags/:tagName/links`);
     return links;
   } catch (error) {
     throw error;
@@ -175,7 +176,7 @@ async function postTag() {
   try {
     const {
       rows: tags
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(`./api/tags`);
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(`/routes/tags`);
     return tags;
   } catch (error) {
     throw error;
@@ -186,7 +187,7 @@ async function editTag() {
   try {
     const {
       rows: tags
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.patch(`./api/tags/tagId`);
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.patch(`/routes/tags/tagId`);
     return tags;
   } catch (error) {
     throw error;
@@ -197,7 +198,7 @@ async function deleteTag() {
   try {
     const {
       rows: tags
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.delete(`./api/tags/:tagId`);
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.delete(`/routes/tags/:tagId`);
     return tags;
   } catch (error) {
     throw error;
@@ -207,7 +208,7 @@ async function getLinkTags() {
   try {
     const {
       rows: link_tags
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(`./api/link_tags`);
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(`/routes/link_tags`);
     return link_tags;
   } catch (error) {
     throw error;
@@ -217,7 +218,7 @@ async function postLinkTag() {
   try {
     const {
       rows: link_tags
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(`./api/link_tags`);
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(`/routes/link_tags`);
     return link_tags;
   } catch (error) {
     throw error;
@@ -228,7 +229,7 @@ async function editLinkTag() {
   try {
     const {
       rows: link_tags
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.patch(`./api/link_tags/:link_tagId`);
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.patch(`/routes/link_tags/:link_tagId`);
     return link_tags;
   } catch (error) {
     throw error;
@@ -239,7 +240,7 @@ async function deleteLinkTag() {
   try {
     const {
       rows: link_tags
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.delete(`./api/link_tags/:link_tagId`);
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.delete(`/routes/link_tags/:link_tagId`);
     return link_tags;
   } catch (error) {
     throw error;
@@ -273,7 +274,7 @@ const Bookmarks = ({}) => {
   let bookmarkCount = links.length;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "App"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Amount of bookmarks: (", bookmarkCount, " )"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, " Amount of clicks:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, " Comments: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Amount of bookmarks: (", bookmarkCount, " )"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, " Amount of clicks:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "Bookmarks"
   }, links.map(({
     id,
@@ -310,19 +311,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _api_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api/index.js */ "./client/api/index.js");
 
- //how will these forms that get added take input values??
+
 
 const NewBookmark = ({}) => {
-  const [newBookmark, setBookmarks] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postLink"])().then(links => {
-      setBookmarks(links);
-    });
-  }, []);
+  const [bookmarks, setBookmarks] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "newBookmark"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Create New Bookmark"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onclick: () => {
+    onClick: () => {
       Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postLink"])();
     }
   }, "Post"));
@@ -349,15 +345,10 @@ __webpack_require__.r(__webpack_exports__);
 
 const NewLinkTag = ({}) => {
   const [newLinkTag, setLinkTags] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postLinkTag"])().then(link_tags => {
-      setLinkTags(link_tags);
-    });
-  }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "newLinkTag"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Create New Link-Tag"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onclick: () => {
+    onClick: () => {
       Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postLinkTag"])();
     }
   }, "Create"));
@@ -384,15 +375,10 @@ __webpack_require__.r(__webpack_exports__);
 
 const NewTag = ({}) => {
   const [newTag, setTags] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postTag"])().then(tags => {
-      setTags(tags);
-    });
-  }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "newTag"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Create New Tag"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onclick: () => {
+    onClick: () => {
       Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postTag"])();
     }
   }, "Create"));
@@ -552,23 +538,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const app = document.querySelector('#app');
-const styles = {
-  title: {
-    backgroundColor: 'pink'
-  },
-  neat: {
-    backgroundColor: 'green'
-  }
-};
 
 const App = () => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "App"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    style: styles.title
-  }, "Linkerator!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-    style: styles.neat
-  }, "Neat stuff. Oh boy."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Bookmarks__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewBookmark__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_tags__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewTag__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_link_tags__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewLinkTag__WEBPACK_IMPORTED_MODULE_7__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Needs some style now!"));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Linkerator!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Bookmark Some Links"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Bookmarks__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewBookmark__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_tags__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewTag__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_link_tags__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewLinkTag__WEBPACK_IMPORTED_MODULE_7__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Needs some style now!"));
 };
 
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null), app, () => {
