@@ -1,21 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+import {getLinks, editLink, deleteLink } from '../api/index.js';
 
 
 const Bookmarks = ({ 
-  getLinks,
-  editLink,                       //axios calls i wrote to access the db at certain routes 
-  deleteLink
  }) => {
-  let bookmarkCount = getLinks.reduce((linkcount, link) => {
-    return linkcount + link.count
-  }, 0);
+   const [links, setLinks] = useState([]);
+  useEffect(()=>{
+    getLinks()
+    .then((links)=>{
+      setLinks(links)
+    })
+  }, []);
+
+  let bookmarkCount = links.length
 
   return (
     <div id="App">
       <h3>Amount of bookmarks: ({ bookmarkCount } )</h3>
+
+      <h3> Amount of clicks:</h3>
+      
+      <h5> Comments: </h5>
       
       <div className="Bookmarks"> 
-      {getLinks.map(({ id, name, count }) => (
+      {links.map(({ id, name, count }) => (
         <p key={ id }>
           
           <span>                                
@@ -37,5 +46,4 @@ const Bookmarks = ({
 }
 
 
-module.exports= {Bookmarks};
-//export not found?
+export default Bookmarks;

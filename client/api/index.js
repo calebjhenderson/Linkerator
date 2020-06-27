@@ -1,12 +1,8 @@
 import axios from 'axios';
 
-const BASE = 'https://localhost3000.com'
-
-
-
 export async function getLinks() {
   try {
-    const { rows:links } = await axios.get(`${ BASE }/links`);
+    const { rows:links } = await axios.get(`./api/links`);
     return links;
   } catch (error) {
     throw error;
@@ -15,7 +11,7 @@ export async function getLinks() {
 
 export async function postLink(){
   try{
-    const { rows:links } = await axios.post(`${ BASE }/links`);
+    const { rows:links } = await axios.post(`./api/links`);
     return links
   } catch (error) {
     throw error;
@@ -24,7 +20,7 @@ export async function postLink(){
 
 export async function editLink() {
   try{
-    const { rows:links } = await axios.patch(`${ BASE}/links/:id`);
+    const { rows:links } = await axios.patch(`./api/links/:id`);
     return links
   } catch (error){
     throw error;
@@ -33,7 +29,7 @@ export async function editLink() {
 
 export async function deleteLink() {
   try{
-    const { rows:links } = await axios.delete(`${BASE}/links/linkid`)
+    const { rows:links } = await axios.delete(`./api/links/linkid`)
     return links
   } catch (error){
     throw error;
@@ -46,7 +42,7 @@ export async function deleteLink() {
 
 export async function getTags() {
     try {
-      const { rows:tags } = await axios.get(`${ BASE }/tags`);
+      const { rows:tags } = await axios.get(`./api/tags`);
       return tags;
     } catch (error) {
       throw error;
@@ -55,7 +51,7 @@ export async function getTags() {
 
 export async function getLinksByTag(){
   try{
-    const{ rows:links } = await axios.get(`${ BASE }/tags/:tagName/links`)
+    const{ rows:links } = await axios.get(`./api/tags/:tagName/links`)
     return links
   } catch(error){
     throw error
@@ -64,7 +60,7 @@ export async function getLinksByTag(){
 
 export async function postTag(){
   try{
-    const{ rows:tags } = await axios.post(`${ BASE }/tags`)
+    const{ rows:tags } = await axios.post(`./api/tags`)
     return tags
   } catch(error){
     throw error
@@ -74,7 +70,7 @@ export async function postTag(){
 //this link needs to be updated when the routes written.
 export async function editTag(){
   try{
-    const{ rows:tags } = await axios.patch(`${ BASE }/tags/tagId`)
+    const{ rows:tags } = await axios.patch(`./api/tags/tagId`)
     return tags
   } catch(error){
     throw error
@@ -83,7 +79,7 @@ export async function editTag(){
 //this link needs to be updated when the routes written.
 export async function deleteTag(){
   try{
-    const{ rows:tags } = await axios.delete(`${ BASE }/tags/:tagId`)
+    const{ rows:tags } = await axios.delete(`./api/tags/:tagId`)
     return tags
   } catch(error){
     throw error
@@ -97,7 +93,7 @@ export async function deleteTag(){
 
 export async function getLinkTags() {
     try {
-      const { rows:link_tags } = await axios.get(`${ BASE }/link_tags`);
+      const { rows:link_tags } = await axios.get(`./api/link_tags`);
       return link_tags;
     } catch (error) {
       throw error;
@@ -105,7 +101,7 @@ export async function getLinkTags() {
   }
 export async function postLinkTag() {
   try{
-    const { rows:link_tags } = await axios.post(`${ BASE }/link_tags`);
+    const { rows:link_tags } = await axios.post(`./api/link_tags`);
     return link_tags;
   } catch(error){
     throw error;
@@ -114,7 +110,7 @@ export async function postLinkTag() {
 //this link needs to be updated when the routes written.
 export async function editLinkTag() {
   try{
-    const { rows:link_tags } = await axios.patch(`${ BASE }/link_tags/:link_tagId`)
+    const { rows:link_tags } = await axios.patch(`./api/link_tags/:link_tagId`)
     return link_tags;
   } catch(error){
     throw error;
@@ -123,7 +119,7 @@ export async function editLinkTag() {
 //this link needs to be updated when the routes written.
 export async function deleteLinkTag() {
   try{
-    const { rows:link_tags } = await axios.delete(`${ BASE }/link_tags/:link_tagId`)
+    const { rows:link_tags } = await axios.delete(`./api/link_tags/:link_tagId`)
     return link_tags;
   } catch(error){
     throw error

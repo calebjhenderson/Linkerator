@@ -1,21 +1,24 @@
-import React from 'react';
-import { deleteTag } from './axios';
+import React, { useState, useEffect } from 'react';
+import { getTags, editTag, deleteTag } from '../api/index.js';
 
 
-const Tags = ({ 
-  getTags,
-  editTags,                       //axios calls i wrote to access the db at certain routes 
-  deleteTags
+const Tags = ({                    
  }) => {
-  let tagCount= getTags.reduce((tagcount, tag) => {
-    return tagcount + tag.count
-  }, 0);
+  const [tags, setTags] = useState([]);
+  useEffect(()=>{
+    getTags()
+    .then((tags)=>{
+      setTags(tags)
+    })
+  }, []);
+
+  let tagCount = tags.length
 
   return (
     <div id="App">
       <h3>Amount of tags: ({ tagCount } )</h3>
       
-      {getTags.map(({ id, name, count }) => (
+      {tags.map(({ id, name, count }) => (
         <p key={ id }>
           
           <span>                                
@@ -35,5 +38,4 @@ const Tags = ({
   );
 }
 
-
-module.exports= {Bookmarks};
+export default Tags

@@ -1,78 +1,47 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Bookmarks } from './components/bookmarks.js'
+import Bookmarks  from './components/Bookmarks'
+import Tags  from './components/tags'
+import Link_Tags  from './components/link_tags'
+
+import NewBookmark from './components/NewBookmark'
+import NewTag from './components/NewTag'
+import NewLinkTag from './components/NewLinkTag'
+
+import SearchBookmarks from './components/SearchBookmarks'
+import SearchTags from './components/SearchTags'
 
 
 const app = document.querySelector('#app')
+
 const styles = {
-    container:{
+    title:{
         backgroundColor:'pink'
+    },
+    neat:{
+        backgroundColor:'green'
+
     }
 }
 
-// const SearchTagsForm = () => {
-//     return (
-//         <div style={styles.container}>
-        
-//             <input type="text" label="search"/> 
-//             <button >Search Tags</button>
-//              </div>
-//     )
-// }
-
-
-
-
-
-// const SearchLinksForm = () => {
-//     return (
-//         <div style={styles.container}>
-//             <input type="text" label="search"/> 
-//             <button >Search Links</button>
-//              </div>
-//     )
-// }
-
-
-
-
-// const SearchLinksResults = () => {
-//     return (
-//         <div id="App" style={styles.container}>
-// {/* THIS NEEDS TO RE RENDER BASED ON STATE CHANGING, WITH THE DATA FROM THE BUTTON CLICK */}
-//         </div>
-//     )
-// }
-
-// const SearchTagsResults = () => {
-//     return (
-//         <div id="App" style={styles.container}>
-//             {/* SAME HERE */}
-//             <button>Edit</button>
-//             <button>Delete</button>
-//         </div>
-//     )
-// }
-
-
-
 
 const App = () => {
-    const [links, setLinks] = useState([]);
-    const [tags, setTags] = useState([]);
     
     return (
-        <div id= "App" style={styles.container}>
-            <h1>Linkerator!</h1>
-            <h2>Neat stuff. Oh boy.</h2>
-            <SearchBookmarks/>
-            <Bookmarks 
-            getLinks = { links }
-            patchLink = { patchLink }
-            postLink = { postLink }
-            deleteLink = { deleteLink }/>
-            <SearchTags/>
+        <div id= "App" >
+            <h1 style={styles.title}>Linkerator!</h1>
+            <h2 style={styles.neat}>Neat stuff. Oh boy.</h2>
+            <Bookmarks/>
+            <NewBookmark/>
             <Tags/>
+            <NewTag/>
+            <Link_Tags/>
+            <NewLinkTag/>
+            
+            {/* <SearchBookmarks/> */}
+            {/* <SearchTags/> */}
+            {/* <SearchLinkTags/>*/}
+
             <h3>Needs some style now!</h3>
         </div>
     )
