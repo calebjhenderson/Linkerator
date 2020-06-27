@@ -16,7 +16,7 @@ const Link_Tags = ({
 
   return (
     <div id="App">
-      <h3>Amount of link_tags: ({ link_tagCount } )</h3>
+      <h3>Amount of Link-Tags: ({ link_tagCount } )</h3>
       
       {link_tags.map(({ id, name, count }) => (
         <p key={ id }>

@@ -19,13 +19,15 @@ const Bookmarks = ({
 
   return (
     <div id="App">
-      <h3>Amount of bookmarks: ({ bookmarkCount } )</h3>
 
-      <h3> Amount of clicks:</h3>
+    <div className="Bookmarks"> 
+      <h3>Bookmark Count: ({ bookmarkCount } )</h3>
+
+      {/* <h3> Amount of clicks:</h3> */}
 
       {/* <h5> Comments: </h5> */}
       
-      <div className="Bookmarks"> 
+      
       {links.map(({ id, name, count }) => (
         <p key={ id }>
           

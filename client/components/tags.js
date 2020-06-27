@@ -16,7 +16,7 @@ const Tags = ({
 
   return (
     <div id="App">
-      <h3>Amount of tags: ({ tagCount } )</h3>
+      <h3>Amount of Tags: ({ tagCount } )</h3>
       
       {tags.map(({ id, name, count }) => (
         <p key={ id }>

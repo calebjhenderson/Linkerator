@@ -274,9 +274,9 @@ const Bookmarks = ({}) => {
   let bookmarkCount = links.length;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "App"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Amount of bookmarks: (", bookmarkCount, " )"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, " Amount of clicks:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "Bookmarks"
-  }, links.map(({
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Bookmark Count: (", bookmarkCount, " )"), links.map(({
     id,
     name,
     count
@@ -315,13 +315,15 @@ __webpack_require__.r(__webpack_exports__);
 
 const NewBookmark = ({}) => {
   const [bookmarks, setBookmarks] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  const updatedBookmarks = Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postLink"])();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "newBookmark"
+    id: "App"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Create New Bookmark"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: () => {
       Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postLink"])();
+      setBookmarks(updatedBookmarks);
     }
-  }, "Post"));
+  }, "Create"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (NewBookmark);
@@ -341,15 +343,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _api_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api/index.js */ "./client/api/index.js");
 
- //how will these inputs that get added take input values??
+
 
 const NewLinkTag = ({}) => {
   const [newLinkTag, setLinkTags] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  const updatedLinkTags = Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postLinkTag"])();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "newLinkTag"
+    id: "App"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Create New Link-Tag"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: () => {
       Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postLinkTag"])();
+      setLinkTags(updatedLinkTags);
     }
   }, "Create"));
 };
@@ -371,15 +375,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _api_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api/index.js */ "./client/api/index.js");
 
- //how will these inputs that get added take input values??
+
 
 const NewTag = ({}) => {
   const [newTag, setTags] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  const updatedTags = Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postTag"])();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "newTag"
+    id: "App"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Create New Tag"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: () => {
       Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postTag"])();
+      setTags(updatedTags);
     }
   }, "Create"));
 };
@@ -435,7 +441,7 @@ const Link_Tags = ({}) => {
   let link_tagCount = link_tags.length;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "App"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Amount of link_tags: (", link_tagCount, " )"), link_tags.map(({
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Amount of Link-Tags: (", link_tagCount, " )"), link_tags.map(({
     id,
     name,
     count
@@ -482,7 +488,7 @@ const Tags = ({}) => {
   let tagCount = tags.length;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "App"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Amount of tags: (", tagCount, " )"), tags.map(({
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Amount of Tags: (", tagCount, " )"), tags.map(({
     id,
     name,
     count
@@ -540,7 +546,9 @@ __webpack_require__.r(__webpack_exports__);
 const app = document.querySelector('#app');
 
 const App = () => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Linkerator!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Bookmark Some Links"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Bookmarks__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewBookmark__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_tags__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewTag__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_link_tags__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewLinkTag__WEBPACK_IMPORTED_MODULE_7__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Needs some style now!"));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "app"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Linkerator!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Bookmark Your Favorite Links"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Bookmarks__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewBookmark__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_tags__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewTag__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_link_tags__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewLinkTag__WEBPACK_IMPORTED_MODULE_7__["default"], null));
 };
 
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null), app, () => {

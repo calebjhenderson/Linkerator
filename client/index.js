@@ -21,9 +21,9 @@ const app = document.querySelector('#app')
 const App = () => {
     
     return (
-        <div >
+        <div id = 'app'>
             <h1 >Linkerator!</h1>
-            <h2 >Bookmark Some Links</h2>
+            <h3 >Bookmark Your Favorite Links</h3>
             <Bookmarks/>
             <NewBookmark/>
             <Tags/>
@@ -35,7 +35,6 @@ const App = () => {
             <SearchTags/>
             <SearchLinkTags/> */}
 
-            <h3>Needs some style now!</h3>
         </div>
     )
 }
