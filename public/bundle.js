@@ -272,6 +272,12 @@ const Bookmarks = ({}) => {
     });
   }, []);
   let bookmarkCount = links.length;
+  let state = {
+    count: 0
+  }; // handleClick = () => {
+  //   this.setState(prev => ({ count: prev.count + 1 }));
+  // };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "App"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -350,7 +356,7 @@ const NewLinkTag = ({}) => {
   const updatedLinkTags = Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postLinkTag"])();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "App"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Create New Link-Tag"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Create New Link Tag"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: () => {
       Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postLinkTag"])();
       setLinkTags(updatedLinkTags);
@@ -398,10 +404,25 @@ const NewTag = ({}) => {
 /*!**********************************************!*\
   !*** ./client/components/SearchBookmarks.js ***!
   \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 
+const SearchBookmarks = ({}) => {
+  const [bookmarks, setBookmarks] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    id: "App"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", null, "Search"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: () => {}
+  }, "Search"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SearchBookmarks);
 
 /***/ }),
 
@@ -441,7 +462,7 @@ const Link_Tags = ({}) => {
   let link_tagCount = link_tags.length;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "App"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Amount of Link-Tags: (", link_tagCount, " )"), link_tags.map(({
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Amount of Link Tags: (", link_tagCount, " )"), link_tags.map(({
     id,
     name,
     count
@@ -530,7 +551,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_NewTag__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/NewTag */ "./client/components/NewTag.js");
 /* harmony import */ var _components_NewLinkTag__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/NewLinkTag */ "./client/components/NewLinkTag.js");
 /* harmony import */ var _components_SearchBookmarks__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/SearchBookmarks */ "./client/components/SearchBookmarks.js");
-/* harmony import */ var _components_SearchBookmarks__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_components_SearchBookmarks__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _components_SearchTags__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/SearchTags */ "./client/components/SearchTags.js");
 /* harmony import */ var _components_SearchTags__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_components_SearchTags__WEBPACK_IMPORTED_MODULE_9__);
 
@@ -548,7 +568,7 @@ const app = document.querySelector('#app');
 const App = () => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "app"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Linkerator!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Bookmark Your Favorite Links"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Bookmarks__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewBookmark__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_tags__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewTag__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_link_tags__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewLinkTag__WEBPACK_IMPORTED_MODULE_7__["default"], null));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Linkerator!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, " Bookmark Your Favorite Links"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Bookmarks__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewBookmark__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_tags__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewTag__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_link_tags__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewLinkTag__WEBPACK_IMPORTED_MODULE_7__["default"], null));
 };
 
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null), app, () => {

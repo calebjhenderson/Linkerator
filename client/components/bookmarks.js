@@ -16,12 +16,25 @@ const Bookmarks = ({
   
 
   let bookmarkCount = links.length
+  let state = {
+    count: 0
+  };
 
+  // handleClick = () => {
+
+  //   this.setState(prev => ({ count: prev.count + 1 }));
+  // };
   return (
     <div id="App">
 
     <div className="Bookmarks"> 
       <h3>Bookmark Count: ({ bookmarkCount } )</h3>
+
+      {/* <button className="block" onClick={this.handleClick()}>
+        <div className="counter">{this.state.count}</div>
+      </button> */}
+
+      
 
       {/* <h3> Amount of clicks:</h3> */}
 

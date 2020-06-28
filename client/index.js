@@ -12,28 +12,21 @@ import SearchBookmarks from './components/SearchBookmarks'
 import SearchTags from './components/SearchTags'
 
 
-
 const app = document.querySelector('#app')
-
-
-
 
 const App = () => {
     
     return (
         <div id = 'app'>
             <h1 >Linkerator!</h1>
-            <h3 >Bookmark Your Favorite Links</h3>
+            <h3> Bookmark Your Favorite Links</h3>
+       
             <Bookmarks/>
             <NewBookmark/>
             <Tags/>
             <NewTag/>
             <Link_Tags/>
             <NewLinkTag/>
-            
-            {/* <SearchBookmarks/>
-            <SearchTags/>
-            <SearchLinkTags/> */}
 
         </div>
     )
@@ -47,6 +40,6 @@ ReactDOM.render(
     () => {
         console.log('Rendered!!!')
     }
-)
+);
 
 

@@ -12,7 +12,7 @@ const NewLinkTag = ({
   
     return (
         <div id= "App">
-          <h3>Create New Link-Tag</h3>
+          <h3>Create New Link Tag</h3>
           
           {/* <input type = 'text'> </input> */}
           

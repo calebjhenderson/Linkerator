@@ -13,12 +13,13 @@ const NewBookmark = ({
         <div id= "App">
           <h3>Create New Bookmark</h3>
           
-          {/* <input type = 'text'> add a link here </input> */}
-          
           <button onClick= {()=>{postLink(); setBookmarks(updatedBookmarks)}
-        }>Create</button> 
+          }>Create</button> 
+      
           </div>
+          
 
-    )}
+          )};
+
 export default NewBookmark;
 

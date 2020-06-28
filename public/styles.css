@@ -1,18 +1,19 @@
 body{
-background-color:pink;
+background-color:yellow;
 text-align: center;
 height: 400px;
 }
 #App{
-    height:300px;
+    height:200px;
 }
 
 h1{
-    border: dashed rgb(199, 18, 18) 3px;
+    border: dotted hotpink;
+    border-radius: 50%;
 }
 
 h3{
     text-underline-position: below;
     text-decoration: underline;
-    text-decoration-color:blueviolet;
+    text-decoration-color:hotpink;
 }
