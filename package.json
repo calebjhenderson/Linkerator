@@ -5,6 +5,7 @@
   "main": "linkerator.js",
   "scripts": {
     "start": "node server.js",
+    "build": "webpack --mode=\"production\"",
     "start:client": "webpack --watch",
     "start:server": "node server.js",
     "seed:dev": "node ./db/seed.js"
