@@ -438,10 +438,19 @@ __webpack_require__.r(__webpack_exports__);
 const SearchBookmarks = ({
   setResults
 }) => {
+  const [name, setName] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
+
+  const handleNameChange = event => {
+    setName(event.target.value);
+  };
+
   async function handleSubmit(event) {
     event.preventDefault();
-    const bookMarks = await Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["fetchBookmarks"])();
-    setResults(bookMarks);
+    const bookmarks = await Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["fetchBookmarks"])({
+      name,
+      text
+    });
+    setResults(bookmarks);
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -450,7 +459,9 @@ const SearchBookmarks = ({
     onSubmit: handleSubmit
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
-    placeholder: "search bookmarks"
+    placeholder: "search bookmarks",
+    value: name,
+    onChange: handleNameChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "submit"
   }, "Search")));
@@ -478,10 +489,19 @@ __webpack_require__.r(__webpack_exports__);
 const SearchTags = ({
   setResults
 }) => {
+  const [text, setText] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
+
+  const handleTextChange = event => {
+    setText(event.target.value);
+  };
+
   async function handleSubmit(event) {
     event.preventDefault();
-    const searchedTags = await Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["fetchBookmarks"])();
-    setResults(searchedTags);
+    const tags = await Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["fetchBookmarks"])({
+      name,
+      text
+    });
+    setResults(bookmarks);
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -490,7 +510,9 @@ const SearchTags = ({
     onSubmit: handleSubmit
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
-    placeholder: "search tags"
+    placeholder: "search tags",
+    value: name,
+    onChange: handleTextChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "submit"
   }, "Search")));
