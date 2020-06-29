@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import {getLinks, editLink, deleteLink } from '../api/index.js';
+import {getLinks, editLink, deleteLink, fetchBookmarks } from '../api/index.js';
+
 
 
 const Bookmarks = ({ 
@@ -8,49 +9,29 @@ const Bookmarks = ({
    const [links, setLinks] = useState([]);
 
   useEffect(()=>{
-    getLinks()
+    fetchBookmarks()
     .then((links)=>{
       setLinks(links)
     })
   }, []);
   
-
-  let bookmarkCount = links.length
-  let state = {
-    count: 0
-  };
-
-  // handleClick = () => {
-
-  //   this.setState(prev => ({ count: prev.count + 1 }));
-  // };
   return (
     <div id="App">
 
     <div className="Bookmarks"> 
-      <h3>Bookmark Count: ({ bookmarkCount } )</h3>
+      <h3>Bookmark Count: ({ links.length } )</h3>
 
-      {/* <button className="block" onClick={this.handleClick()}>
-        <div className="counter">{this.state.count}</div>
-      </button> */}
-
-      
-
-      {/* <h3> Amount of clicks:</h3> */}
-
-      {/* <h5> Comments: </h5> */}
-      
-      
-      {links.map(({ id, name, count }) => (
+      {links.map(({ id, name, url}) => (
         <p key={ id }>
           
           <span>                                
-            ({ count }x) { name }
+           { id, name }<br /> 
+           {url}
           </span><br /> 
-
+          <input type="text" placeholder="enter url"/>
           <button onClick={
             () => editLink({ id, name })
-          }> Edit Bookmark </button>
+          }> Edit </button>
 
           <button onClick={
             () => deleteLink({ id })

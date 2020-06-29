@@ -68,7 +68,7 @@ export async function postTag(){
   }
 }
 
-//this link needs to be updated when the routes written.
+//These id links need to be updated when the routes written.
 export async function editTag(){
   try{
     const{ rows:tags } = await axios.patch(`/routes/tags/tagId`)
@@ -77,7 +77,7 @@ export async function editTag(){
     throw error
   }
 }
-//this link needs to be updated when the routes written.
+
 export async function deleteTag(){
   try{
     const{ rows:tags } = await axios.delete(`/routes/tags/:tagId`)
@@ -108,7 +108,7 @@ export async function postLinkTag() {
     throw error;
   }
 }
-//this link needs to be updated when the routes written.
+
 export async function editLinkTag() {
   try{
     const { rows:link_tags } = await axios.patch(`/routes/link_tags/:link_tagId`)
@@ -117,7 +117,7 @@ export async function editLinkTag() {
     throw error;
   }
 }
-//this link needs to be updated when the routes written.
+
 export async function deleteLinkTag() {
   try{
     const { rows:link_tags } = await axios.delete(`/routes/link_tags/:link_tagId`)
@@ -125,6 +125,33 @@ export async function deleteLinkTag() {
   } catch(error){
     throw error
   }
+}
+
+
+
+
+//>>>>>>>>>>>>>>>>>>>>>TEST FUNC FOR BOOKMARK DATA>>>>>>>>>>>>>>>>>>>>>>>>>
+const twitter = {
+  comment: "Twitter is cool",
+  id: "1",
+  imageUrl: "https://help.twitter.com/content/dam/help-twitter/brand/logo.png",
+  name: "Twitter",
+  tag: "tweet tweet",
+  url: "twitter.com",
+}
+const google = {
+  comment: "Google is possibly cooler",
+  id: "2",
+  imageUrl: "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
+  name: "Google",
+  tag: "google goog",
+  url: "google.com",
+}
+export async function fetchBookmarks(props) {
+  return [
+    twitter,
+    google,
+  ];
 }
 
 

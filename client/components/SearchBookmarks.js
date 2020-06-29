@@ -1,23 +1,21 @@
-import React,{useState} from 'react'
+import React from 'react';
+import{fetchBookmarks}from '../api/index.js'
 
-
-const SearchBookmarks = ({
-
-})=>{
-
-  const [bookmarks, setBookmarks] = useState([]);
- 
-  
-    return (
-        <form id= "App">
-        <label></label>
-          <input>Search</input>
-          <button onClick= {()=>{}
-          }>Search</button> 
-      
-         </form>
-          
-
-          )};
+const SearchBookmarks = ({setResults}) => {
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const bookMarks = await fetchBookmarks();
+    setResults(bookMarks);
+  }
+  return (
+    <div id="search">
+      <h3>Search bookmarks here:</h3>
+      <form onSubmit={ handleSubmit }>
+        <input type="text" placeholder="search bookmarks" />
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  );
+}
 
 export default SearchBookmarks;

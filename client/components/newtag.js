@@ -15,7 +15,7 @@ const NewTag = ({
         <div id='App'>
           <h3>Create New Tag</h3>
           
-          {/* <input type = 'text'> </input> */}
+          <input type = "text" placeholder="enter new tag"/> 
           
           <button onClick= {()=>{postTag();setTags(updatedTags)}
         }>Create</button> 

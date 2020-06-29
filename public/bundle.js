@@ -90,7 +90,7 @@
 /*!*****************************!*\
   !*** ./client/api/index.js ***!
   \*****************************/
-/*! exports provided: getLinks, postLink, editLink, deleteLink, getTags, getLinksByTag, postTag, editTag, deleteTag, getLinkTags, postLinkTag, editLinkTag, deleteLinkTag */
+/*! exports provided: getLinks, postLink, editLink, deleteLink, getTags, getLinksByTag, postTag, editTag, deleteTag, getLinkTags, postLinkTag, editLinkTag, deleteLinkTag, fetchBookmarks */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -108,6 +108,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postLinkTag", function() { return postLinkTag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editLinkTag", function() { return editLinkTag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteLinkTag", function() { return deleteLinkTag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBookmarks", function() { return fetchBookmarks; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
@@ -181,7 +182,7 @@ async function postTag() {
   } catch (error) {
     throw error;
   }
-} //this link needs to be updated when the routes written.
+} //These id links need to be updated when the routes written.
 
 async function editTag() {
   try {
@@ -192,8 +193,7 @@ async function editTag() {
   } catch (error) {
     throw error;
   }
-} //this link needs to be updated when the routes written.
-
+}
 async function deleteTag() {
   try {
     const {
@@ -223,8 +223,7 @@ async function postLinkTag() {
   } catch (error) {
     throw error;
   }
-} //this link needs to be updated when the routes written.
-
+}
 async function editLinkTag() {
   try {
     const {
@@ -234,8 +233,7 @@ async function editLinkTag() {
   } catch (error) {
     throw error;
   }
-} //this link needs to be updated when the routes written.
-
+}
 async function deleteLinkTag() {
   try {
     const {
@@ -245,6 +243,26 @@ async function deleteLinkTag() {
   } catch (error) {
     throw error;
   }
+} //>>>>>>>>>>>>>>>>>>>>>TEST FUNC FOR BOOKMARK DATA>>>>>>>>>>>>>>>>>>>>>>>>>
+
+const twitter = {
+  comment: "Twitter is cool",
+  id: "1",
+  imageUrl: "https://help.twitter.com/content/dam/help-twitter/brand/logo.png",
+  name: "Twitter",
+  tag: "tweet tweet",
+  url: "twitter.com"
+};
+const google = {
+  comment: "Google is possibly cooler",
+  id: "2",
+  imageUrl: "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
+  name: "Google",
+  tag: "google goog",
+  url: "google.com"
+};
+async function fetchBookmarks(props) {
+  return [twitter, google];
 }
 
 /***/ }),
@@ -267,33 +285,29 @@ __webpack_require__.r(__webpack_exports__);
 const Bookmarks = ({}) => {
   const [links, setLinks] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["getLinks"])().then(links => {
+    Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["fetchBookmarks"])().then(links => {
       setLinks(links);
     });
   }, []);
-  let bookmarkCount = links.length;
-  let state = {
-    count: 0
-  }; // handleClick = () => {
-  //   this.setState(prev => ({ count: prev.count + 1 }));
-  // };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "App"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "Bookmarks"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Bookmark Count: (", bookmarkCount, " )"), links.map(({
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Bookmark Count: (", links.length, " )"), links.map(({
     id,
     name,
-    count
+    url
   }) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     key: id
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "(", count, "x) ", name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, (id, name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), url), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    placeholder: "enter url"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: () => Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["editLink"])({
       id,
       name
     })
-  }, " Edit Bookmark "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, " Edit "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: () => Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["deleteLink"])({
       id
     })
@@ -324,7 +338,10 @@ const NewBookmark = ({}) => {
   const updatedBookmarks = Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postLink"])();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "App"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Create New Bookmark"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Create New Bookmark"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    placeholder: "enter url to bookmark"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: () => {
       Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postLink"])();
       setBookmarks(updatedBookmarks);
@@ -388,7 +405,10 @@ const NewTag = ({}) => {
   const updatedTags = Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postTag"])();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "App"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Create New Tag"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Create New Tag"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    placeholder: "enter new tag"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: () => {
       Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postTag"])();
       setTags(updatedTags);
@@ -411,15 +431,29 @@ const NewTag = ({}) => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _api_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api/index.js */ "./client/api/index.js");
 
 
-const SearchBookmarks = ({}) => {
-  const [bookmarks, setBookmarks] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    id: "App"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", null, "Search"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: () => {}
-  }, "Search"));
+
+const SearchBookmarks = ({
+  setResults
+}) => {
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const bookMarks = await Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["fetchBookmarks"])();
+    setResults(bookMarks);
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "search"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Search bookmarks here:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    placeholder: "search bookmarks"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "submit"
+  }, "Search")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SearchBookmarks);
@@ -430,10 +464,39 @@ const SearchBookmarks = ({}) => {
 /*!*****************************************!*\
   !*** ./client/components/SearchTags.js ***!
   \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _api_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api/index.js */ "./client/api/index.js");
 
 
+
+const SearchTags = ({
+  setResults
+}) => {
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const searchedTags = await Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["fetchBookmarks"])();
+    setResults(searchedTags);
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "search"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Search tags here:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    placeholder: "search tags"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "submit"
+  }, "Search")));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SearchTags);
 
 /***/ }),
 
@@ -502,20 +565,25 @@ __webpack_require__.r(__webpack_exports__);
 const Tags = ({}) => {
   const [tags, setTags] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["getTags"])().then(tags => {
+    Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["fetchBookmarks"])().then(tags => {
       setTags(tags);
     });
   }, []);
   let tagCount = tags.length;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "App"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "Tags"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Amount of Tags: (", tagCount, " )"), tags.map(({
     id,
     name,
-    count
+    comment,
+    imageUrl,
+    tag,
+    url
   }) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     key: id
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "(", count, "x) ", name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "(", id, ")# ", tag, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Comments: ", comment), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: () => Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["editTag"])({
       id,
       name
@@ -524,7 +592,7 @@ const Tags = ({}) => {
     onClick: () => Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["deleteTag"])({
       id
     })
-  }, " Delete Tag "))));
+  }, " Delete Tag ")))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Tags);
@@ -550,9 +618,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_NewBookmark__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/NewBookmark */ "./client/components/NewBookmark.js");
 /* harmony import */ var _components_NewTag__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/NewTag */ "./client/components/NewTag.js");
 /* harmony import */ var _components_NewLinkTag__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/NewLinkTag */ "./client/components/NewLinkTag.js");
-/* harmony import */ var _components_SearchBookmarks__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/SearchBookmarks */ "./client/components/SearchBookmarks.js");
-/* harmony import */ var _components_SearchTags__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/SearchTags */ "./client/components/SearchTags.js");
-/* harmony import */ var _components_SearchTags__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_components_SearchTags__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _api_index_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./api/index.js */ "./client/api/index.js");
+/* harmony import */ var _components_SearchBookmarks__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/SearchBookmarks */ "./client/components/SearchBookmarks.js");
+/* harmony import */ var _components_SearchTags__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/SearchTags */ "./client/components/SearchTags.js");
+
 
 
 
@@ -566,13 +635,19 @@ __webpack_require__.r(__webpack_exports__);
 const app = document.querySelector('#app');
 
 const App = () => {
+  const [results, setResults] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  Object(_api_index_js__WEBPACK_IMPORTED_MODULE_8__["fetchBookmarks"])().then(console.log);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "app"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Linkerator!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, " Bookmark Your Favorite Links"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Bookmarks__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewBookmark__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_tags__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewTag__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_link_tags__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewLinkTag__WEBPACK_IMPORTED_MODULE_7__["default"], null));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Linkerator!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, " Bookmark Your Favorite Links"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SearchBookmarks__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    setResults: setResults
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Bookmarks__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    results: results
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SearchTags__WEBPACK_IMPORTED_MODULE_10__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_tags__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewBookmark__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewTag__WEBPACK_IMPORTED_MODULE_6__["default"], null));
 };
 
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null), app, () => {
-  console.log('Rendered!!!');
+  console.log('Rendered!');
 });
 
 /***/ }),

@@ -12,6 +12,7 @@ const NewBookmark = ({
     return (
         <div id= "App">
           <h3>Create New Bookmark</h3>
+          <input type="text" placeholder='enter url to bookmark'/>
           
           <button onClick= {()=>{postLink(); setBookmarks(updatedBookmarks)}
           }>Create</button> 
