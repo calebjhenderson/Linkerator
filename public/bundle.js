@@ -267,9 +267,41 @@ async function fetchBookmarks(props) {
 
 /***/ }),
 
-/***/ "./client/components/Bookmarks.js":
+/***/ "./client/components/NewLinkTag.js":
+/*!*****************************************!*\
+  !*** ./client/components/NewLinkTag.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _api_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api/index.js */ "./client/api/index.js");
+
+
+
+const NewLinkTag = ({}) => {
+  const [newLinkTag, setLinkTags] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  const updatedLinkTags = Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postLinkTag"])();
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "App"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Create New Link Tag"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: () => {
+      Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postLinkTag"])();
+      setLinkTags(updatedLinkTags);
+    }
+  }, "Create"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (NewLinkTag);
+
+/***/ }),
+
+/***/ "./client/components/bookmarks.js":
 /*!****************************************!*\
-  !*** ./client/components/Bookmarks.js ***!
+  !*** ./client/components/bookmarks.js ***!
   \****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -318,9 +350,56 @@ const Bookmarks = ({}) => {
 
 /***/ }),
 
-/***/ "./client/components/NewBookmark.js":
+/***/ "./client/components/link_tags.js":
+/*!****************************************!*\
+  !*** ./client/components/link_tags.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _api_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api/index.js */ "./client/api/index.js");
+
+
+
+const Link_Tags = ({}) => {
+  const [link_tags, setLinkTags] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["getLinkTags"])().then(link_tags => {
+      setLinkTags(link_tags);
+    });
+  }, []);
+  let link_tagCount = link_tags.length;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "App"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Amount of Link Tags: (", link_tagCount, " )"), link_tags.map(({
+    id,
+    name,
+    count
+  }) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    key: id
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "(", count, "x) ", name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: () => Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["editLinkTag"])({
+      id,
+      name
+    })
+  }, " Edit Tag "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: () => Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["deleteLinkTag"])({
+      id
+    })
+  }, " Delete Tag "))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Link_Tags);
+
+/***/ }),
+
+/***/ "./client/components/newbookmark.js":
 /*!******************************************!*\
-  !*** ./client/components/NewBookmark.js ***!
+  !*** ./client/components/newbookmark.js ***!
   \******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -353,41 +432,9 @@ const NewBookmark = ({}) => {
 
 /***/ }),
 
-/***/ "./client/components/NewLinkTag.js":
-/*!*****************************************!*\
-  !*** ./client/components/NewLinkTag.js ***!
-  \*****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _api_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api/index.js */ "./client/api/index.js");
-
-
-
-const NewLinkTag = ({}) => {
-  const [newLinkTag, setLinkTags] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-  const updatedLinkTags = Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postLinkTag"])();
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "App"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Create New Link Tag"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: () => {
-      Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["postLinkTag"])();
-      setLinkTags(updatedLinkTags);
-    }
-  }, "Create"));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (NewLinkTag);
-
-/***/ }),
-
-/***/ "./client/components/NewTag.js":
+/***/ "./client/components/newtag.js":
 /*!*************************************!*\
-  !*** ./client/components/NewTag.js ***!
+  !*** ./client/components/newtag.js ***!
   \*************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -420,9 +467,9 @@ const NewTag = ({}) => {
 
 /***/ }),
 
-/***/ "./client/components/SearchBookmarks.js":
+/***/ "./client/components/searchbookmarks.js":
 /*!**********************************************!*\
-  !*** ./client/components/SearchBookmarks.js ***!
+  !*** ./client/components/searchbookmarks.js ***!
   \**********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -471,9 +518,9 @@ const SearchBookmarks = ({
 
 /***/ }),
 
-/***/ "./client/components/SearchTags.js":
+/***/ "./client/components/searchtags.js":
 /*!*****************************************!*\
-  !*** ./client/components/SearchTags.js ***!
+  !*** ./client/components/searchtags.js ***!
   \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -519,53 +566,6 @@ const SearchTags = ({
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SearchTags);
-
-/***/ }),
-
-/***/ "./client/components/link_tags.js":
-/*!****************************************!*\
-  !*** ./client/components/link_tags.js ***!
-  \****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _api_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api/index.js */ "./client/api/index.js");
-
-
-
-const Link_Tags = ({}) => {
-  const [link_tags, setLinkTags] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["getLinkTags"])().then(link_tags => {
-      setLinkTags(link_tags);
-    });
-  }, []);
-  let link_tagCount = link_tags.length;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "App"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Amount of Link Tags: (", link_tagCount, " )"), link_tags.map(({
-    id,
-    name,
-    count
-  }) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    key: id
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "(", count, "x) ", name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: () => Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["editLinkTag"])({
-      id,
-      name
-    })
-  }, " Edit Tag "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: () => Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["deleteLinkTag"])({
-      id
-    })
-  }, " Delete Tag "))));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Link_Tags);
 
 /***/ }),
 
@@ -634,15 +634,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_Bookmarks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Bookmarks */ "./client/components/Bookmarks.js");
+/* harmony import */ var _components_bookmarks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/bookmarks */ "./client/components/bookmarks.js");
 /* harmony import */ var _components_tags__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/tags */ "./client/components/tags.js");
 /* harmony import */ var _components_link_tags__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/link_tags */ "./client/components/link_tags.js");
-/* harmony import */ var _components_NewBookmark__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/NewBookmark */ "./client/components/NewBookmark.js");
-/* harmony import */ var _components_NewTag__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/NewTag */ "./client/components/NewTag.js");
+/* harmony import */ var _components_newbookmark__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/newbookmark */ "./client/components/newbookmark.js");
+/* harmony import */ var _components_newtag__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/newtag */ "./client/components/newtag.js");
 /* harmony import */ var _components_NewLinkTag__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/NewLinkTag */ "./client/components/NewLinkTag.js");
 /* harmony import */ var _api_index_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./api/index.js */ "./client/api/index.js");
-/* harmony import */ var _components_SearchBookmarks__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/SearchBookmarks */ "./client/components/SearchBookmarks.js");
-/* harmony import */ var _components_SearchTags__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/SearchTags */ "./client/components/SearchTags.js");
+/* harmony import */ var _components_searchbookmarks__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/searchbookmarks */ "./client/components/searchbookmarks.js");
+/* harmony import */ var _components_searchtags__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/searchtags */ "./client/components/searchtags.js");
 
 
 
@@ -661,11 +661,11 @@ const App = () => {
   Object(_api_index_js__WEBPACK_IMPORTED_MODULE_8__["fetchBookmarks"])().then(console.log);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "app"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Linkerator!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, " Bookmark Your Favorite Links"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SearchBookmarks__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Linkerator!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, " Bookmark Your Favorite Links"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_searchbookmarks__WEBPACK_IMPORTED_MODULE_9__["default"], {
     setResults: setResults
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Bookmarks__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_bookmarks__WEBPACK_IMPORTED_MODULE_2__["default"], {
     results: results
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SearchTags__WEBPACK_IMPORTED_MODULE_10__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_tags__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewBookmark__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewTag__WEBPACK_IMPORTED_MODULE_6__["default"], null));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_searchtags__WEBPACK_IMPORTED_MODULE_10__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_tags__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_newbookmark__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_newtag__WEBPACK_IMPORTED_MODULE_6__["default"], null));
 };
 
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null), app, () => {

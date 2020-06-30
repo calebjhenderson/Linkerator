@@ -1,18 +1,18 @@
 import React, {useState} from 'react'
 import ReactDOM from 'react-dom'
 
-import Bookmarks  from './components/Bookmarks'
+import Bookmarks  from './components/bookmarks'
 import Tags  from './components/tags'
 import Link_Tags  from './components/link_tags'
 
-import NewBookmark from './components/NewBookmark'
-import NewTag from './components/NewTag'
+import NewBookmark from './components/newbookmark'
+import NewTag from './components/newtag'
 import NewLinkTag from './components/NewLinkTag'
 
 import {fetchBookmarks} from './api/index.js'
 
-import SearchBookmarks from './components/SearchBookmarks'
-import SearchTags from './components/SearchTags'
+import SearchBookmarks from './components/searchbookmarks'
+import SearchTags from './components/searchtags'
 
 
 const app = document.querySelector('#app')
