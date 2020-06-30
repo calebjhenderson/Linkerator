@@ -1,7 +1,6 @@
 const express = require('express');
 const tagsRouter = express.Router();
 const { getAllTags, getLinkByTagName } = require('../db');
-const linksRouter = require('./links');
 
 tagsRouter.use((req, res, next) => {
     console.log('A request in being made to /tags')
@@ -31,7 +30,7 @@ tagsRouter.get('/:tagName/links', async (req, res, next) => {
             });
         } else {
             next({
-                name: 'NoLinksForTags',
+                name: 'NoLinksForTagsrror',
                 message: "Did not find any links for this tag"
             });
         }

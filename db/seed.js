@@ -1,115 +1,87 @@
-const { db } = require ('./database');
+const { db } = require('./database.js');
+const { createLink } = require('./links');
+const { createTag } = require('./tags');
+const { addTagToLink } = require('./link_tags');
+db.connect();
 
-createDB = async (force = false) => {
+async function dropTables(force = false) {
 
-    try {
-        if (force) { 
+    if (force) {
+        
+        db.query(`
+            DROP TABLE IF EXISTS link_tags;
+            DROP TABLE IF EXISTS links;
+            DROP TABLE IF EXISTS tags;
+        `);
+    }
+}
 
-            await db.query(`
-                DROP TABLE IF EXISTS link_tags;
-                DROP TABLE IF EXISTS links;
-                DROP TABLE IF EXISTS tags;
-            `);
-        }
+async function createTables () {
   
-        console.log('>>>>>createDB', 'tables dropped');
-
+    try {
         await db.query(`
-            CREATE TABLE IF NOT EXISTS links ( 
+            CREATE TABLE links (
                 id SERIAL PRIMARY KEY,
-                name VARCHAR (255) UNIQUE NOT NULL,
-                url VARCHAR (255) UNIQUE NOT NULL,
-                count INTEGER DEFAULT 1,
-                comment TEXT,
+                link VARCHAR(255) UNIQUE NOT NULL,
+                comment TEXT NOT NULL,
+                clicks INTEGER DEFAULT 1,
                 date DATE NOT NULL DEFAULT CURRENT_DATE
             );
-        `);
-
-        console.log('>>>>>createDB', 'links table created');
+        `)
+        console.log(`> links table created`);
 
         await db.query(`
-            CREATE TABLE IF NOT EXISTS tags ( 
+            CREATE TABLE tags (
                 id SERIAL PRIMARY KEY,
-                name TEXT UNIQUE NOT NULL
+                name VARCHAR(255) UNIQUE NOT NULL
             );
         `);
-
-        console.log('>>>>>createDB', 'tags table created');
+        console.log(`> tags table created`);
 
         await db.query(`
-            CREATE TABLE IF NOT EXISTS link_tags ( 
-                PRIMARY KEY ("linkId", "tagId"),
-                "linkId" INTEGER REFERENCES links(id),
-                "tagId" INTEGER REFERENCES tags(id)
+            CREATE TABLE link_tags (
+                id SERIAL PRIMARY KEY,
+                "linkId" INTEGER REFERENCES links(id) ON DELETE CASCADE,
+                "tagId" INTEGER REFERENCES tags(id),
+                UNIQUE ("linkId", "tagId")
             );
         `);
+        console.log(`> link_tags table created`);
 
-        console.log('>>>>>createDB', 'link_tags created');
-    
-    } catch (error) {
-        throw error
+    } catch (e) {
+        console.error(e)
     }
 }
 
-initDB = async () => {
+async function createInitialData () {
 
     try {
-      
-        await db.query(`
-            INSERT INTO links (id, name, url, comment) 
-            VALUES (1, 'javascript.info', 'www.javascript.info', 'great javascript reference')
-            ON CONFLICT DO NOTHING
-            ;
-        `);
+       
+        await createLink ({ link: "http://google.com", comment: "Search for everything"});
+        await createLink ({ link: "http://reddit.com", comment: "Talk about anything"});
 
-        console.log('>>>>>initDB', 'links INSERT completed');
+        await createTag ({name: "tags"});
 
-        await db.query(`
-            INSERT INTO tags (id, name) 
-            VALUES (1, 'javascript, programming')
-            ON CONFLICT DO NOTHING
-            ;
-        `);
+        await addTagToLink({linkId: 1, tagId: 1});
 
-        console.log('>>>>>initDB', 'tags INSERT completed');
-
-        await db.query(`
-            INSERT INTO link_tags ("linkId", "tagId") 
-            VALUES (1, 1)
-            ON CONFLICT DO NOTHING
-            ;
-       `);
-
-        console.log('>>>>>initDB', 'link_tags INSERT completed');
-
-    } catch (error) {
-        throw error;
+    } catch (e) {
+        console.error(e)
     }
-
-    console.log('db INSERTS completed!');
-
+   
 }
 
-seed = async () => {
+async function seed () {
 
+    console.log(`> Seeding DB`)
     try {
-
-        db.connect();
-        console.log('db connected!');
-
-        await createDB(false); // execute or not to DROP tables 
-        await initDB();
-
-        console.log('db seeded!');
-    
-    } catch (error) {
-
-        throw error;
+        await dropTables(true);
+        await createTables();
+        await createInitialData();
+    } catch (e) {
+        console.error(e)
     }
 }
 
 seed()
-    .catch(console.error)
-    .finally(() => {
-        db.end();
-    })
+    .then(console.error)
+    .finally(()=> db.end())

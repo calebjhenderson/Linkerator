@@ -1,19 +1,42 @@
-async function createTags(tags) {
+const { db } = require('./database.js');
 
-    // looping through tags array and do insert on each new tag
-    // https://www.postgresqltutorial.com/postgresql-upsert/
-    
+async function getAllTags () {
 
-        const { rows:insertedTags } = await db.query(`
-            INSERT INTO tags(name)
-            VALUES (${tagsString})
+        const { rows } = await db.query(`
+            SELECT * 
+            FROM tags;
+        `);
+
+        return rows;
+   
+}
+
+async function getTagByName (name) {
+   
+        const { rows } = await db.query(`
+            SELECT * 
+            FROM tags
+            WHERE name=$1;
+        `, [name]);
+
+        return rows;
+  
+}
+
+async function createTag ({name}) {
+   
+        const { rows } = await db.query(`
+            INSERT INTO tags (name)
+            VALUES ($1)
             RETURNING *;
-            `,Object.values(tags)
-        );
+        `, [name]);
 
-        console.log('>>>>>createTags', insertedTags);
+        return rows;
+   
+}
 
-        return insertedTags;
-
-    
+module.exports = {
+    getAllTags,
+    getTagByName,
+    createTag
 }

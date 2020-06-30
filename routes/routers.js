@@ -1,8 +1,9 @@
 const express = require('express');
 const apiRouter = express.Router();
 const chalk = require('chalk');
+const bodyParser = require('body-parser')
 
-
+apiRouter.use(bodyParser.json());
 
 
 const linksRouter = require('./links');
@@ -11,8 +12,8 @@ apiRouter.use('/links', linksRouter);
 const tagsRouter = require('./tags');
 apiRouter.use('/tags', tagsRouter);
 
-const linkTagsRouter = require('./link_tags');
-apiRouter.use('/link_tags', linkTagsRouter);
+// const linkTagsRouter = require('./link_tags');
+// apiRouter.use('/link_tags', linkTagsRouter);
 
 
 

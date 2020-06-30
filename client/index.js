@@ -9,7 +9,7 @@ import NewBookmark from './components/newbookmark'
 import NewTag from './components/newtag'
 import NewLinkTag from './components/NewLinkTag'
 
-import {fetchBookmarks} from './api/index.js'
+import {fetchLinks, fetchBookmarks} from './api/index.js'
 
 import SearchBookmarks from './components/searchbookmarks'
 import SearchTags from './components/searchtags'
@@ -28,8 +28,6 @@ const App = () => {
             <Bookmarks results={results}/>
             <SearchTags/>
             <Tags/>
-            
-            
             
             <NewBookmark/>
             <NewTag/>

@@ -90,7 +90,7 @@
 /*!*****************************!*\
   !*** ./client/api/index.js ***!
   \*****************************/
-/*! exports provided: getLinks, postLink, editLink, deleteLink, getTags, getLinksByTag, postTag, editTag, deleteTag, getLinkTags, postLinkTag, editLinkTag, deleteLinkTag, fetchBookmarks */
+/*! exports provided: getLinks, postLink, editLink, deleteLink, getTags, getLinksByTag, postTag, editTag, deleteTag, getLinkTags, postLinkTag, editLinkTag, deleteLinkTag, fetchBookmarks, fetchLinks */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -109,6 +109,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editLinkTag", function() { return editLinkTag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteLinkTag", function() { return deleteLinkTag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBookmarks", function() { return fetchBookmarks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLinks", function() { return fetchLinks; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
@@ -263,6 +264,17 @@ const google = {
 };
 async function fetchBookmarks(props) {
   return [twitter, google];
+}
+async function fetchLinks() {
+  try {
+    const {
+      data
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://localhost:3000/api/links');
+    console.log(data);
+    return data;
+  } catch (error) {
+    throw error;
+  }
 }
 
 /***/ }),

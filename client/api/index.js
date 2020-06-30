@@ -154,4 +154,14 @@ export async function fetchBookmarks(props) {
   ];
 }
 
+export async function fetchLinks () {
+  try {
+      const { data } = await axios.get('http://localhost:3000/api/links')
+      console.log(data);
+      return data;
+  } catch (error) {
+      throw error;
+  }
+}
+
 
