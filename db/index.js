@@ -1,4 +1,3 @@
-  
 module.exports = {
     ...require('./database'),
     ...require('./links'),

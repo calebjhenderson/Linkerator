@@ -506,8 +506,7 @@ const SearchBookmarks = ({
   async function handleSubmit(event) {
     event.preventDefault();
     const bookmarks = await Object(_api_index_js__WEBPACK_IMPORTED_MODULE_1__["fetchBookmarks"])({
-      name,
-      text
+      name
     });
     setResults(bookmarks);
   }

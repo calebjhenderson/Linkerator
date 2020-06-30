@@ -12,8 +12,7 @@ const SearchBookmarks = ({setResults}) => {
     event.preventDefault();
 
     const bookmarks = await fetchBookmarks({
-      name,
-      text
+      name
     });
 
     setResults(bookmarks);
